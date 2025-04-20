@@ -1,5 +1,5 @@
 from flask import Flask, request, jsonify
-from health_utils import calculate_bmi, calculate_bmr
+from Python_Project.health_utils import calculate_bmi, calculate_bmr
 
 app = Flask(__name__)
 
