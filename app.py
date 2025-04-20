@@ -1,25 +1,31 @@
 from flask import Flask, request, jsonify
-from Python_Project.health_utils import calculate_bmi, calculate_bmr
+from health_utils import calculate_bmi, calculate_bmr
 
 app = Flask(__name__)
 
 @app.route('/bmi', methods=['POST'])
 def bmi():
-    data = request.get_json()
-    height = data['height']
-    weight = data['weight']
-    bmi = calculate_bmi(height, weight)
-    return jsonify({'bmi': bmi})
+    try:
+        data = request.get_json()
+        height = float(data['height'])  # en mètres
+        weight = float(data['weight'])  # en kg
+        bmi = calculate_bmi(height, weight)
+        return jsonify({'bmi': round(bmi, 2)})
+    except Exception as e:
+        return jsonify({'error': str(e)}), 400
 
 @app.route('/bmr', methods=['POST'])
 def bmr():
-    data = request.get_json()
-    height = data['height']
-    weight = data['weight']
-    age = data['age']
-    gender = data['gender']
-    bmr = calculate_bmr(height, weight, age, gender)
-    return jsonify({'bmr': bmr})
+    try:
+        data = request.get_json()
+        height = float(data['height'])  # en cm
+        weight = float(data['weight'])  # en kg
+        age = int(data['age'])         # en années
+        gender = data['gender']        # 'male' ou 'female'
+        bmr = calculate_bmr(height, weight, age, gender)
+        return jsonify({'bmr': bmr})
+    except Exception as e:
+        return jsonify({'error': str(e)}), 400
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=5000)
