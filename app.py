@@ -1,5 +1,5 @@
 from flask import Flask, request, jsonify
-from health_utils import calculate_bmi, calculate_bmr
+from health_utils import calculate_bmi, calculate_bmr  # Import absolu
 
 app = Flask(__name__)
 
