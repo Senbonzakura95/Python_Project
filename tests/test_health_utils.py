@@ -1,3 +1,5 @@
+from health_utils import calculate_bmi, calculate_bmr  # Doit pointer vers le fichier health_utils.py
+
 def test_calculate_bmr_male(self):
     """Test BMR calculation for males"""
     height = 175  # cm
