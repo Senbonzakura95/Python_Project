@@ -34,34 +34,66 @@ python app.py
 
 ### POST /bmi
 ```json
-// Request
-{
-  "height": 1.75,  // mètres
-  "weight": 70     // kg
-}
+# Test BMI pour une personne de 1.75m et 70kg
+curl -X POST https://health-app-cddfbebjheergufc.canadacentral-01.azurewebsites.net/bmi \
+-H "Content-Type: application/json" \
+-d '{
+    "height": 1.75,
+    "weight": 70
+}'
 
-// Response
-{
-  "bmi": 22.86
-}
+# Résultat attendu
+{"bmi": 22.86}
+
+# Test BMI pour une personne de 1.80m et 75kg
+curl -X POST https://health-app-cddfbebjheergufc.canadacentral-01.azurewebsites.net/bmi \
+-H "Content-Type: application/json" \
+-d '{
+    "height": 1.80,
+    "weight": 75
+}'
+
+# Résultat attendu
+{"bmi": 23.15}
+
 ```
 
 ### POST /bmr
 ```json
-// Request
-{
-  "height": 175,   // cm
-  "weight": 70,    // kg
-  "age": 30,       // années
-  "gender": "male" // "male" ou "female"
-}
+# Test BMR pour un homme
+curl -X POST https://health-app-cddfbebjheergufc.canadacentral-01.azurewebsites.net/bmr \
+-H "Content-Type: application/json" \
+-d '{
+    "height": 175,
+    "weight": 70,
+    "age": 30,
+    "gender": "male"
+}'
 
-// Response
-{
-  "bmr": 1723.46
-}
+# Résultat attendu
+{"bmr": 1723.46}
+
+# Test BMR pour une femme
+curl -X POST https://health-app-cddfbebjheergufc.canadacentral-01.azurewebsites.net/bmr \
+-H "Content-Type: application/json" \
+-d '{
+    "height": 165,
+    "weight": 60,
+    "age": 25,
+    "gender": "female"
+}'
+
+# Résultat attendu
+{"bmr": 1382.29}
+
 ```
 
+### POST /Health
+```json
+
+curl https://health-app-cddfbebjheergufc.canadacentral-01.azurewebsites.net/health
+
+```
 ## 🔄 Pipeline CI/CD
 
 Le workflow GitHub Actions est déclenché à chaque push sur main :
