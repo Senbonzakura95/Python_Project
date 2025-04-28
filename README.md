@@ -1,4 +1,4 @@
-# Health Calculator Microservice
+# Health App Calculator Microservice
 
 Un microservice Python (Flask) pour calculer le BMI et BMR, déployé sur Azure avec CI/CD.
 
